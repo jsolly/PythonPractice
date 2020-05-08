@@ -1,5 +1,4 @@
 import unittest
-import oop_refresh
 
 
 class TestEmployee(unittest.TestCase):

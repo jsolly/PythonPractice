@@ -1,12 +1,12 @@
-import unittest
-import classic_problems
+from unittests import test_oop_refresh
+test_oop_refresh.TestEmployee
 
-class TestClass(unittest.TestCase):
-    def test_fizz_buzz(self):
-        fizzbuzz = 15
-        fizz = 3
-        buzz = 5
+def fizz_buzz(num):
+    if num % 3 == 0 and num %5 == 0:
+        return "FizzBuzz"
 
-        self.assertEqual(classic_problems.fizz_buzz(fizzbuzz), "fizzbuzz")
-        self.assertEqual(classic_problems.fizz_buzz(fizz), "fizz")
-        self.assertEqual(classic_problems.fizz_buzz(buzz), "fizzbuzz")
+    elif num % 3 == 0:
+        return "Fizz"
+
+    elif num % 5 == 0:
+        return "Buzz"
