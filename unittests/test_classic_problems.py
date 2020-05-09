@@ -1,17 +1,22 @@
-try:
-    import unittest
-    import classic_problems
-except Exception as e:
-    print(f"Some modules are missing!{e}")
+import unittest
+from PythonPractice import classic_problems
 
-classic_problems.fizz_buzz(5)
 
 class TestClass(unittest.TestCase):
+
     def test_fizz_buzz(self):
         fizzbuzz = 15
         fizz = 3
         buzz = 5
 
-        self.assertEqual(classic_problems.fizz_buzz(fizzbuzz), "fizzbuzz")
-        self.assertEqual(classic_problems.fizz_buzz(fizz), "fizz")
-        self.assertEqual(classic_problems.fizz_buzz(buzz), "fizzbuzz")
+        for i in range(30):
+            print(classic_problems.fizz_buzz(i))
+        # self.assertEqual(classic_problems.fizz_buzz(fizzbuzz), "FizzBuzz")
+        # self.assertEqual(classic_problems.fizz_buzz(fizz), "Fizz")
+        # self.assertEqual(classic_problems.fizz_buzz(buzz), "Buzz")
+
+    def test_fibonacci_generator(self):
+        fib_gen = classic_problems.fibonacci_generator(10)
+        first_ten = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+        for fib, num in zip(fib_gen, first_ten):
+            self.assertEqual(fib, num)
