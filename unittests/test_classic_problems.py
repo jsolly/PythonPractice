@@ -1,9 +1,8 @@
 import unittest
-from PythonPractice import classic_problems
+from GitHub.PythonPractice import classic_problems
 
 
 class TestClass(unittest.TestCase):
-
     def test_fizz_buzz(self):
         fizzbuzz = 15
         fizz = 3
@@ -11,9 +10,9 @@ class TestClass(unittest.TestCase):
 
         for i in range(30):
             print(classic_problems.fizz_buzz(i))
-        # self.assertEqual(classic_problems.fizz_buzz(fizzbuzz), "FizzBuzz")
-        # self.assertEqual(classic_problems.fizz_buzz(fizz), "Fizz")
-        # self.assertEqual(classic_problems.fizz_buzz(buzz), "Buzz")
+        self.assertEqual(classic_problems.fizz_buzz(fizzbuzz), "FizzBuzz")
+        self.assertEqual(classic_problems.fizz_buzz(fizz), "Fizz")
+        self.assertEqual(classic_problems.fizz_buzz(buzz), "Buzz")
 
     def test_fibonacci_generator(self):
         fib_gen = classic_problems.fibonacci_generator(10)

@@ -13,7 +13,7 @@ class Employee:
 
     @fullname.setter
     def fullname(self, name):
-        first, last = name.split(' ')
+        first, last = name.split(" ")
         self.first = first
         self.last = last
 
@@ -22,7 +22,6 @@ class Employee:
         print("delete name")
         self.first = None
         self.last = None
-
 
     def apply_raise(self):
         self.pay = int(self.raise_amt * self.pay)
@@ -43,6 +42,7 @@ class Employee:
     def __len__(self):
         return len(self.fullname)
 
+
 class Developer(Employee):
     raise_amt = 1.10
 
@@ -52,7 +52,6 @@ class Developer(Employee):
 
 
 class Manager(Employee):
-
     def __init__(self, first, last, pay, employees=None):
         super().__init__(first, last, pay)
         if not employees:
@@ -70,4 +69,4 @@ class Manager(Employee):
 
     def print_employees(self):
         for emp in self.employees:
-            print('-->', emp.fullname())
+            print("-->", emp.fullname())

@@ -1,9 +1,8 @@
 import unittest
-from PythonPractice import oop_refresh
+from GitHub.PythonPractice import oop_refresh
 
 
 class TestEmployee(unittest.TestCase):
-
     def test_fullname(self):
         emp_1 = oop_refresh.Employee("john", "Solly", 100000)
         self.assertTrue(emp_1.fullname, "John Solly")
@@ -23,7 +22,9 @@ class TestEmployee(unittest.TestCase):
 
     def test_repr(self):
         emp_1 = oop_refresh.Employee("John", "Solly", 100000)
-        self.assertEqual(repr(emp_1), f"Employee('{emp_1.first}, {emp_1.last}, {emp_1.pay})")
+        self.assertEqual(
+            repr(emp_1), f"Employee('{emp_1.first}, {emp_1.last}, {emp_1.pay})"
+        )
 
     def test_add(self):
         emp_1 = oop_refresh.Employee("John", "Solly", 100000)
@@ -62,7 +63,6 @@ class TestManager(unittest.TestCase):
 
     def test_remove_emp(self):
         emp_1 = oop_refresh.Employee("John", "Solly", 100000)
-        mgr_1 = oop_refresh.Manager("Chris", "Happy", 100000,
-                                    employees=[emp_1])
+        mgr_1 = oop_refresh.Manager("Chris", "Happy", 100000, employees=[emp_1])
         mgr_1.remove_employee(emp_1)
         self.assertFalse(emp_1 in mgr_1.employees)
