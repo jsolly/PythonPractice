@@ -2,30 +2,33 @@
 # import os
 import logging
 
-# """
-# Idempotence
-# f(f(x)) = f(x)
-#
-# Whenever you do something over and over again, you get the same result.
-#
-# GET
-# PUT
-# POST
-# DELETE
-#
-# Are always Idempotent
-#
-# POST is NOT Idempotent (The response can change on multiple tries)
-# """
+# import asyncio
+# import time
+# from multiprocessing import Process, Queue, Pool, cpu_count
+"""
+Idempotence
+f(f(x)) = f(x)
+
+Whenever you do something over and over again, you get the same result.
+
+GET
+PUT
+POST
+DELETE
+
+Are always Idempotent
+
+POST is NOT Idempotent (The response can change on multiple tries)
+"""
 #
 # print(abs(abs(-10)))  # Will always be 10
 #
-# """
-# Closures
-#
-# "A closure is an inner function that remembers and has access to variables in
-# the local scope in which it was created.
-# """
+"""
+Closures
+
+"A closure is an inner function that remembers and has access to variables in
+the local scope in which it was created.
+"""
 #
 #
 # def outer_func(msg):
@@ -39,10 +42,10 @@ import logging
 #
 # outer_func()
 #
-# """
-# Memoization: storing the result of a function so it does not need to be re-run
-# if the same inputs are seen again.
-# """
+"""
+Memoization: storing the result of a function so it does not need to be re-run
+if the same inputs are seen again.
+"""
 #
 # ef_cache = {}
 #
@@ -70,25 +73,25 @@ import logging
 # result = expensive_func(10)
 # print(result)
 #
-# """
-# Ternary Conditional
-# """
+"""
+Ternary Conditional
+"""
 # # condition = False
 # # x = 1 if condition else 0
 #
-# """
-# formatting large numbers.
-# 2_000_000 # Adding underscores does not affect numbers in Python!
-# """
+"""
+formatting large numbers.
+2_000_000 # Adding underscores does not affect numbers in Python!
+"""
 # num1 = 10_000_000_000
 # num2 = 100_000_000
 # total = num1 + num2
 #
 # print(f"{total:,}")
 #
-# """
-# iterate over two lists at once!
-# """
+"""
+iterate over two lists at once!
+"""
 # names = [""]
 #
 #
@@ -108,9 +111,9 @@ import logging
 #         assert fib == num
 #
 #
-# """
-# Tuple unpacking
-# """
+"""
+Tuple unpacking
+"""
 # # set 'a' and 'b' to 1, 2 and c to everything up to the last one [3, 4] d to 5
 # a, b, *c, d = (1, 2, 3, 4, 5)
 # print(a, b, c, d)
@@ -118,17 +121,17 @@ import logging
 # a, b, *_ = (1, 2, 3, 4, 5)
 # print(a, b, c, d)
 #
-# """
-# Being 'Pythonic'... EAFP (Easier to ask forgiveness than permission)
-# 'Let's try to do something and if it doesn't work, we will handle it.
-# vs
-# Look before you leap (LBYL)
-# 'ask permission every step you take.'
-#
-# Python can be a lot faster in situations where you don't expect a lot of errors
-# because you don't have to keep accessing the object to ask it questions before
-# proceeding.
-# """
+"""
+Being 'Pythonic'... EAFP (Easier to ask forgiveness than permission)
+'Let's try to do something and if it doesn't work, we will handle it.
+vs
+Look before you leap (LBYL)
+'ask permission every step you take.'
+
+Python can be a lot faster in situations where you don't expect a lot of errors
+because you don't have to keep accessing the object to ask it questions before
+proceeding.
+"""
 #
 #
 # class Person:
@@ -173,9 +176,9 @@ import logging
 #         print("I don't think this is a duck!")
 #
 #
-# """
-# How being more Pythonic can avoid race conditions
-# """
+"""
+How being more Pythonic can avoid race conditions
+"""
 #
 # my_file = "file.txt"
 #
@@ -195,6 +198,123 @@ import logging
 # else:
 #     with f:
 #         print(f.read())
+
+"""
+Async Tasks
+"""
+
+
+# def print_something(something):
+#     time.sleep(0.1)
+#     print(something)
+#
+#
+# async def print_something_2(something):
+#     time.sleep(0.1)
+#     print(something)
+#
+#
+# async def main(loop):
+#     colors = [
+#         "Black",
+#         "Yellow",
+#         "Green",
+#         "Red",
+#         "Blue",
+#         "Beige",
+#         "Orange",
+#         "Burgundy",
+#         "Pink",
+#         "Brown",
+#     ]
+#     for color in colors:
+#         loop.create_task(print_something_2(color))
+#
+#     # await asyncio.wait()
+#
+#
+# START_TIME = time.clock()
+# LOOP = asyncio.get_event_loop()
+# try:
+#     LOOP.run_until_complete(main(LOOP))
+# except Exception as e:
+#     pass
+# finally:
+#     LOOP.close()
+# print(f"I took {time.clock() - START_TIME} seconds to complete")
+"""
+Multiprocessing
+"""
+
+# def print_something(something):
+#     time.sleep(1)
+#     print(something)
+#
+#
+# def multiprocess_list(items):
+#     processes = []
+#
+#     for item in items:
+#         proc = Process(target=print_something, args=(item,))
+#         processes.append(proc)
+#         proc.start()
+#
+#     for proc in processes:
+#         proc.join()
+#
+#
+# def multiprocess_tasks(tasks, number_of_processes):
+#     tasks_to_accomplish = Queue()
+#     processes = []
+#
+#     for task in tasks:
+#         tasks_to_accomplish.put(task)
+#
+#     for i in range(number_of_processes):
+#         while not tasks_to_accomplish.empty():
+#             p = Process(target=print_something, args=(tasks_to_accomplish.get(),))
+#             processes.append(p)
+#             p.start()
+#
+#     for p in processes:
+#         p.join()
+#
+#
+# def pool_tasks(tasks, number_of_processes):
+#     p = Pool(number_of_processes)
+#     p.map(print_something, tasks)
+#
+#
+# COLORS = [
+#     "Black",
+#     "Yellow",
+#     "Green",
+#     "Red",
+#     "Blue",
+#     "Beige",
+#     "Orange",
+#     "Burgundy",
+#     "Pink",
+#     "Brown",
+# ]
+#
+# START_TIME = time.time()
+# for COLOR in COLORS:
+#     print_something(COLOR)
+# # Method 1
+# multiprocess_list(COLORS) # 1.5 seconds
+#
+# # Method 2
+# multiprocess_tasks(COLORS, cpu_count())  # 1.67 seconds
+#
+# # Method 3
+# pool_tasks(COLORS, cpu_count()) # 3.2 seconds
+#
+# # No multiprocessing 10 seconds
+# for COLOR in COLORS:
+#     print_something(COLOR)
+#
+# print(f"I took {time.time() - START_TIME} seconds to complete")
 
 """
 Python Logging
