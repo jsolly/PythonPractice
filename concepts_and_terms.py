@@ -1,10 +1,3 @@
-# import time
-# import os
-import logging
-
-# import asyncio
-# import time
-# from multiprocessing import Process, Queue, Pool, cpu_count
 """
 Idempotence
 f(f(x)) = f(x)
@@ -46,6 +39,7 @@ the local scope in which it was created.
 Memoization: storing the result of a function so it does not need to be re-run
 if the same inputs are seen again.
 """
+# import time
 #
 # ef_cache = {}
 #
@@ -179,6 +173,7 @@ proceeding.
 """
 How being more Pythonic can avoid race conditions
 """
+# import os
 #
 # my_file = "file.txt"
 #
@@ -202,7 +197,8 @@ How being more Pythonic can avoid race conditions
 """
 Async Tasks
 """
-
+# import time
+# import asyncio
 
 # def print_something(something):
 #     time.sleep(0.1)
@@ -245,6 +241,9 @@ Async Tasks
 """
 Multiprocessing
 """
+# import time
+# from multiprocessing import Process, Queue, Pool, cpu_count
+# import time
 
 # def print_something(something):
 #     time.sleep(1)
@@ -320,31 +319,58 @@ Multiprocessing
 Python Logging
 """
 
-logging.basicConfig(
-    filename="test.log",
-    level=logging.DEBUG,
-    format="%(asctime)s:%(levelname)s:%(message)s",
-)
+# logging.basicConfig(
+#     filename="test.log",
+#     level=logging.DEBUG,
+#     format="%(asctime)s:%(levelname)s:%(message)s",
+# )
+#
+#
+# def add(x, y):
+#     return x + y
+#
+#
+# def subtract(x, y):
+#     return x - y
+#
+#
+# def multiply(x, y):
+#     return x * y
+#
+#
+# def divide(x, y):
+#     return x / y
+#
+#
+# num_1 = 20
+# num_2 = 10
+#
+# add_result = add(num_1, num_2)
+# logging.debug(f"Add: {num_1} + {num_2} = {add_result}")
 
-
-def add(x, y):
-    return x + y
-
-
-def subtract(x, y):
-    return x - y
-
-
-def multiply(x, y):
-    return x * y
-
-
-def divide(x, y):
-    return x / y
-
-
-num_1 = 20
-num_2 = 10
-
-add_result = add(num_1, num_2)
-logging.debug(f"Add: {num_1} + {num_2} = {add_result}")
+# import logging
+#
+# logging.basicConfig(
+#     filename="employee.log", level=logging.INFO, format="%(levelname)s:%(message)s"
+# )
+#
+#
+# class Employee:
+#     def __init__(self, first, last):
+#         self.first = first
+#         self.last = last
+#
+#         logging.info(f"Created Employee: {self.full_name} - {self.email}")
+#
+#     @property
+#     def email(self):
+#         return f"{self.first}.{self.last}@email.com"
+#
+#     @property
+#     def full_name(self):
+#         return f"{self.first} {self.last}"
+#
+#
+# emp_1 = Employee("John", "Solly")
+# emp_2 = Employee("Leroy", "Jenkinssss")
+# emp_3 = Employee("Jane", "Doe")
