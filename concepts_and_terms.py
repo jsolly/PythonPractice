@@ -318,7 +318,7 @@ Multiprocessing
 """
 Python Logging
 """
-
+# import logging
 # logging.basicConfig(
 #     filename="test.log",
 #     level=logging.DEBUG,
@@ -348,7 +348,6 @@ Python Logging
 # add_result = add(num_1, num_2)
 # logging.debug(f"Add: {num_1} + {num_2} = {add_result}")
 
-# import logging
 #
 # logging.basicConfig(
 #     filename="employee.log", level=logging.INFO, format="%(levelname)s:%(message)s"
@@ -374,3 +373,14 @@ Python Logging
 # emp_1 = Employee("John", "Solly")
 # emp_2 = Employee("Leroy", "Jenkinssss")
 # emp_3 = Employee("Jane", "Doe")
+"""
+Github stuff
+"""
+## discard local commits
+# git reset HEAD~
+## Discard local changes NOT committed
+# git reset --hard
+## Compare uncommited files to master
+# git diff
+## Compare committed changes to master
+##git diff --staged
