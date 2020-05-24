@@ -319,60 +319,36 @@ Multiprocessing
 Python Logging
 """
 # import logging
-# logging.basicConfig(
-#     filename="test.log",
-#     level=logging.DEBUG,
-#     format="%(asctime)s:%(levelname)s:%(message)s",
-# )
 #
+# logger = logging.getLogger(__name__)
+# logger.setLevel(logging.DEBUG)  # stream_handler will use this level
 #
-# def add(x, y):
-#     return x + y
+# formatter = logging.Formatter("%(asctime)s:%(levelname)s:%(name)s:%(message)s")
 #
+# file_handler = logging.FileHandler("sample.log")
+# file_handler.setLevel(logging.ERROR)  # Only write ERRORS to the sample.log
+# file_handler.setFormatter(formatter)
 #
-# def subtract(x, y):
-#     return x - y
+# stream_handler = logging.StreamHandler()
+# stream_handler.setFormatter(formatter)
 #
-#
-# def multiply(x, y):
-#     return x * y
+# logger.addHandler(file_handler)
+# logger.addHandler(stream_handler)
 #
 #
 # def divide(x, y):
-#     return x / y
+#     try:
+#         return x / y
+#     except ZeroDivisionError:
+#         logger.exception("Tried to divide by zero")
 #
 #
 # num_1 = 20
-# num_2 = 10
+# num_2 = 0
 #
-# add_result = add(num_1, num_2)
-# logging.debug(f"Add: {num_1} + {num_2} = {add_result}")
+# divide_result = divide(20, 0)
+# logger.debug(f"Divide: {num_1} + {num_2} = {divide_result}")
 
-#
-# logging.basicConfig(
-#     filename="employee.log", level=logging.INFO, format="%(levelname)s:%(message)s"
-# )
-#
-#
-# class Employee:
-#     def __init__(self, first, last):
-#         self.first = first
-#         self.last = last
-#
-#         logging.info(f"Created Employee: {self.full_name} - {self.email}")
-#
-#     @property
-#     def email(self):
-#         return f"{self.first}.{self.last}@email.com"
-#
-#     @property
-#     def full_name(self):
-#         return f"{self.first} {self.last}"
-#
-#
-# emp_1 = Employee("John", "Solly")
-# emp_2 = Employee("Leroy", "Jenkinssss")
-# emp_3 = Employee("Jane", "Doe")
 """
 Github stuff
 """
@@ -384,3 +360,54 @@ Github stuff
 # git diff
 ## Compare committed changes to master
 ##git diff --staged
+"""
+Intertools
+"""
+
+## Counter
+import itertools
+
+# counter = itertools.count(start=1, step=1)
+#
+# data = ["Mark", "Ashley", "Christine", "John", "Holiday"]
+# combined = list(
+#     zip(counter, data)
+# )  # zip pairs iterables together, limited by the shortest one.
+# print(combined)
+
+## Cycle
+# cycle_counter = itertools.cycle(("On", "Off"))  # Good for simulating a switch
+# for _ in range(6):
+#     print(next(cycle_counter))
+
+## Repeat
+# squares = map(pow, range(10), itertools.repeat(2))  # pow(2, 2) == 2^2
+# print(list(squares))
+
+## Starmap
+# squares = itertools.starmap(
+#     pow, [(0, 2), (1, 2), (2, 2)]
+# )  # like map(), but takes sets of tuples
+# print(list(squares))
+
+## Combinations and Permutations
+## With combinations, order does not matter, in permutations, they do.
+import time
+
+letters = ["a", "b", "c"]
+numbers = [1, 2, 3]
+names = ["John", "Ashley"]
+# combinations = itertools.combinations(letters, 2)
+# permutations = itertools.permutations(letters, 2)
+
+t1 = time.perf_counter_ns()
+combined = letters + numbers + names
+t2 = time.perf_counter_ns()
+CONCAT_TIME = t2 - t1
+
+t3 = time.perf_counter_ns()
+combined = itertools.chain(letters, numbers, names)
+t4 = time.perf_counter_ns()
+CHAIN_TIME = t4 - t3
+
+print(CHAIN_TIME, CONCAT_TIME)
