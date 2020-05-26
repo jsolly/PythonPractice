@@ -1,4 +1,15 @@
 """
+Time stuff
+"""
+# import time
+#
+# t1 = time.perf_counter_ns()
+# # do things
+# t2 = time.perf_counter_ns()
+# print(t2 - t1)
+
+
+"""
 Idempotence
 f(f(x)) = f(x)
 
@@ -361,6 +372,76 @@ Github stuff
 ## Compare committed changes to master
 ##git diff --staged
 """
+What is an iterable, iterator, and a generator? Oh My!
+Q: Is a List an iterator?
+A: It is iterable, but it is NOT an iterator.
+Q: So what does it mean that something is 'iterable?'
+A: Something that is iterable is something that can be 'looped' over. These include strings, lists, dictionaries,
+tuples, files, generators, etc. The object needs to be able to return an interator object from its dunder __iter__
+method. The iterator object returned must define a __next__ method. 
+Q: How do we know that something is iterable?
+A: It needs to have dunder (magic) method __iter__
+A: When you are using a for loop over an object, you are calling its __iter__ method.
+Q: So what is an iterator?
+A: An iterator is an object with a state so that it remembers where it is during iteration.
+Q: How does an iterator get its next value?
+A: An iterator gets its next value though the __next__ method
+A: One of the reasons a list is not an iterator is that it does not have a __next__ method.
+Q: What's the difference between a function and a generator?
+A: A generator yields values whereas a function returns values. A generator also maintains state.
+"""
+# tmp_list = [1, 2, 3]
+# iter_list = tmp_list.__iter__()
+# iter_list_2 = iter(tmp_list)
+# assert type(iter_list) == type(iter_list_2)  # Both are iterators
+#
+# # Custom implementation of a for loop
+# tmp_list = [1, 2, 3]
+# iter_list = iter(tmp_list)
+# while True:
+#     try:
+#         item = next(iter_list)
+#         print(item)
+#     except StopIteration:
+#         break
+#
+# # Custom implementation of the range() function using a generator
+# class MyRange:
+#     def __init__(self, start, end):
+#         self.value = start
+#         self.end = end
+#
+#     def __iter__(self):
+#         return self
+#
+#     def __next__(self):
+#         if self.value >= self.end:
+#             raise StopIteration
+#         current = self.value
+#         self.value += 1
+#         return current
+#
+# nums = MyRange(1, 10)
+# for num in nums:
+#     print(num)
+#
+# nums_2 = MyRange(1, 10)
+# print(next(nums_2))
+# print(next(nums_2))
+# print(next(nums_2))
+# print(next(nums_2))
+
+# def my_range(start, end):
+#     current = start
+#     while current < end:
+#         yield current
+#         current += 1
+#
+#
+# nums = my_range(1, 10)
+# for i in range(9):
+#     print(next(nums))
+"""
 Intertools
 """
 
@@ -376,7 +457,7 @@ import itertools
 # print(combined)
 
 ## Cycle
-# cycle_counter = itertools.cycle(("On", "Off"))  # Good for simulating a switch
+# cycle_counter = itertools.cycle(("On", "Off"))  # Good for simulating a switch. Takes a tuple and repeats it.
 # for _ in range(6):
 #     print(next(cycle_counter))
 
@@ -394,20 +475,92 @@ import itertools
 ## With combinations, order does not matter, in permutations, they do.
 import time
 
-letters = ["a", "b", "c"]
-numbers = [1, 2, 3]
-names = ["John", "Ashley"]
+# letters = ["a", "b", "c"]
+# numbers = [1, 2, 3]
+# names = ["John", "Ashley"]
 # combinations = itertools.combinations(letters, 2)
 # permutations = itertools.permutations(letters, 2)
+# itertools.combinations(letters, 2)
+# itertools.permutations(letters, 2)
+# list_generator = itertools.chain(letters, numbers, names)
 
-t1 = time.perf_counter_ns()
-combined = letters + numbers + names
-t2 = time.perf_counter_ns()
-CONCAT_TIME = t2 - t1
+## islice
+# test_gen = (a for a in range(101))
+# slice_of_generator = itertools.islice(
+#     test_gen, 90, 101, 2
+# )  # (iterator, start, stop, step)
+# print(list(slice_of_generator))  # [90, 92, 94, 96, 98, 100]
 
-t3 = time.perf_counter_ns()
-combined = itertools.chain(letters, numbers, names)
-t4 = time.perf_counter_ns()
-CHAIN_TIME = t4 - t3
+## Filtering and Compression
+# import string
+#
+#
+# def lt_2(n):
+#     if n < 2:
+#         return True
+#     return False
+#
+#
+# alphabet_list = list(string.ascii_lowercase)
+# numbers = range(10)
+# names = ["Solly", "Holiday"]
+#
+# selectors = itertools.cycle((True, False))
+#
+# filter_result = filter(lt_2, numbers)
+# print(list(filter_result))  # [0, 1]
+#
+# flip_filter_result = itertools.filterfalse(lt_2, numbers)
+# print(list(flip_filter_result))  # [2, 3, 4, 5, 6, 7, 8, 9]
+#
+# compression_result = itertools.compress(alphabet_list, selectors)
+# print(
+#     list(compression_result)
+# )  # ['a', 'c', 'e', 'g', 'i', 'k', 'm', 'o', 'q', 's', 'u', 'w', 'y']
+#
+# drop_until_true = itertools.dropwhile(
+#     lt_2, numbers
+# )  # filter the nums until you reach a True, then return the rest
+# print(list(drop_until_true))  # [2, 3, 4, 5, 6, 7, 8, 9]
+#
+# take_while_true = itertools.takewhile(
+#     lt_2, numbers
+# )  # return nums until False, then yeet the F out.
+# print(list(take_while_true))  # [0, 1]
 
-print(CHAIN_TIME, CONCAT_TIME)
+## Accumulate
+# numbers = range(10)
+# acc_result = itertools.accumulate(numbers)  # add each num to the next one
+# print(list(acc_result))  # [0, 1, 3, 6, 10, 15, 21, 28, 36, 45]
+
+## Groupby (REQUIRES ITERABLE TO ALREADY BE SORTED!!!!)
+# def get_state(person):
+#     return person["state"]
+#
+#
+# people = [
+#     {"name": "John Doe", "city": "Gotham", "state": "NY"},
+#     {"name": "Jane Doe", "city": "Kings Landing", "state": "NY"},
+#     {"name": "Corey Schafer", "city": "Boulder", "state": "CO"},
+#     {"name": "Al Einstein", "city": "Denver", "state": "CO"},
+#     {"name": "John Henry", "city": "Hinton", "state": "WV"},
+#     {"name": "Randy Moss", "city": "Rand", "state": "WV"},
+#     {"name": "Nicole K", "city": "Asheville", "state": "NC"},
+#     {"name": "Jim Doe", "city": "Charlotte", "state": "NC"},
+#     {"name": "Jane Taylor", "city": "Faketown", "state": "NC"},
+# ]
+#
+# person_group = itertools.groupby(people, get_state)
+
+# for key, group in person_group:
+#     print(key)
+#     for person in group:
+#         print(person)
+
+# copy1, copy2 = itertools.tee(person_group) # create two copies of an iterator
+"""
+requests 
+"""
+import requests
+
+response = requests.get("https://www.google.com")
