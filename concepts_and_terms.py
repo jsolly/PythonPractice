@@ -559,8 +559,42 @@ import time
 
 # copy1, copy2 = itertools.tee(person_group) # create two copies of an iterator
 """
-requests 
+Calling external programs in Python
 """
-import requests
+import subprocess
 
-response = requests.get("https://www.google.com")
+# subprocess.run("ls")  # single command
+# subprocess.run(
+#     "ls -la", shell=True
+# )  # You can use shell=True if running more than one command..but this is not safe
+# subprocess.run(["ls", "-la"])  # passing in commands with a list is safer.
+#
+# # capture output
+# output = subprocess.run(
+#     ["ls", "-la"], capture_output=True, text=True
+# )  # text=true returns a string instead of bytes
+# print(output)
+
+## redirecting output to a file
+# with open("output.txt", "w") as writer_obj:
+#     output = subprocess.run(
+#         ["ls", "-la"], stdout=writer_obj, text=True, check=True
+#     )  # check=true throws an error in Python if it fails
+
+## Error handling
+# output = subprocess.run(["ls", "-la", "blablah"], capture_output=True, text=True)
+# if output.returncode != 0:  # There was an error
+#     print(output.stderr)
+# else:
+#     with open("output.txt", "w") as writer_obj:
+#         writer_obj.write(output)
+
+## Re-direct output to the void
+# subprocess.run(["ls", "-la", "blablah"], stderr=subprocess.DEVNULL)
+
+## Pipe commands | !
+# def get_file_line_count_bash(file_path):
+#     line_count = subprocess.run(
+#         [f"cat {file_path} | wc -l"], capture_output=True, text=True, shell=True
+#     )
+#     return int(line_count.stdout.strip())
