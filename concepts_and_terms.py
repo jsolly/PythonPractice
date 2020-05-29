@@ -363,14 +363,19 @@ Python Logging
 """
 Github stuff
 """
-# # discard local repo commits
+# discard local repo commits
 # git reset HEAD~
-# # Discard staging area changes NOT committed
+# Discard staging area changes NOT committed
 # git reset --hard
-# # Compare staging directory to master
+# Compare staging directory to master
 # git diff
-# # Compare committed changes to local repo to master
-# #git diff --staged
+# Compare committed changes to local repo to master
+# git diff --staged
+# Show all local branches
+# git branch
+# switch branches
+# git checkout <branch-name>
+
 """
 What is an iterable, iterator, and a generator? Oh My!
 Q: Is a List an iterator?
