@@ -362,19 +362,30 @@ Python Logging
 
 """
 Github stuff
+ # Discard local repo commits
+ git reset HEAD~
+ # Discard staging area changes NOT committed
+ git reset --hard
+ # Compare staging directory to master
+ git diff
+ # Compare committed changes to local repo to master
+ git diff --staged
+ # Show all local branches
+ git branch 
+ # Show all remote branches
+ git branch -a
+ # Switch branches
+ git checkout <branch-name>
+ # Take newly created local branch, push it to origin while also creating origin branch. This is only done once.
+ git push -u origin <branch-name>
+ 
+ 
+ # How to merge a branch
+ # Check out local Master branch
+ git checkout master
+ 
 """
-# discard local repo commits
-# git reset HEAD~
-# Discard staging area changes NOT committed
-# git reset --hard
-# Compare staging directory to master
-# git diff
-# Compare committed changes to local repo to master
-# git diff --staged
-# Show all local branches
-# git branch
-# switch branches
-# git checkout <branch-name>
+
 
 """
 What is an iterable, iterator, and a generator? Oh My!
