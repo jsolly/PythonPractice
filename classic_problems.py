@@ -36,7 +36,7 @@ def sentence_gen_func(sentence):
         yield word
 
 
-class Sentence_1:
+class Sentence1:
     def __init__(self, sentence):
         self.sentence_iterator = iter(sentence.split())
 
@@ -47,7 +47,7 @@ class Sentence_1:
         return next(self.sentence_iterator)
 
 
-class Sentence_2:
+class Sentence2:
     def __init__(self, sentence):
         self.sentence = sentence
         self.index = 0
@@ -62,9 +62,3 @@ class Sentence_2:
         current_index = self.index
         self.index += 1
         return self.words[current_index]
-
-
-my_sentence = Sentence_2("This is a test")
-
-for word in my_sentence:
-    print(word)

@@ -363,14 +363,14 @@ Python Logging
 """
 Github stuff
 """
-## discard local commits
+# # discard local repo commits
 # git reset HEAD~
-## Discard local changes NOT committed
+# # Discard staging area changes NOT committed
 # git reset --hard
-## Compare uncommited files to master
+# # Compare staging directory to master
 # git diff
-## Compare committed changes to master
-##git diff --staged
+# # Compare committed changes to local repo to master
+# #git diff --staged
 """
 What is an iterable, iterator, and a generator? Oh My!
 Q: Is a List an iterator?
@@ -445,8 +445,8 @@ A: A generator yields values whereas a function returns values. A generator also
 Intertools
 """
 
-## Counter
-import itertools
+# # Counter
+# import itertools
 
 # counter = itertools.count(start=1, step=1)
 #
@@ -456,24 +456,24 @@ import itertools
 # )  # zip pairs iterables together, limited by the shortest one.
 # print(combined)
 
-## Cycle
+# # Cycle
 # cycle_counter = itertools.cycle(("On", "Off"))  # Good for simulating a switch. Takes a tuple and repeats it.
 # for _ in range(6):
 #     print(next(cycle_counter))
 
-## Repeat
+# # Repeat
 # squares = map(pow, range(10), itertools.repeat(2))  # pow(2, 2) == 2^2
 # print(list(squares))
 
-## Starmap
+# # Starmap
 # squares = itertools.starmap(
 #     pow, [(0, 2), (1, 2), (2, 2)]
 # )  # like map(), but takes sets of tuples
 # print(list(squares))
 
-## Combinations and Permutations
-## With combinations, order does not matter, in permutations, they do.
-import time
+# # Combinations and Permutations
+# # With combinations, order does not matter, in permutations, they do.
+# import time
 
 # letters = ["a", "b", "c"]
 # numbers = [1, 2, 3]
@@ -484,14 +484,14 @@ import time
 # itertools.permutations(letters, 2)
 # list_generator = itertools.chain(letters, numbers, names)
 
-## islice
+# # islice
 # test_gen = (a for a in range(101))
 # slice_of_generator = itertools.islice(
 #     test_gen, 90, 101, 2
 # )  # (iterator, start, stop, step)
 # print(list(slice_of_generator))  # [90, 92, 94, 96, 98, 100]
 
-## Filtering and Compression
+# # Filtering and Compression
 # import string
 #
 #
@@ -528,12 +528,12 @@ import time
 # )  # return nums until False, then yeet the F out.
 # print(list(take_while_true))  # [0, 1]
 
-## Accumulate
+# # Accumulate
 # numbers = range(10)
 # acc_result = itertools.accumulate(numbers)  # add each num to the next one
 # print(list(acc_result))  # [0, 1, 3, 6, 10, 15, 21, 28, 36, 45]
 
-## Groupby (REQUIRES ITERABLE TO ALREADY BE SORTED!!!!)
+# # Groupby (REQUIRES ITERABLE TO ALREADY BE SORTED!!!!)
 # def get_state(person):
 #     return person["state"]
 #
@@ -561,7 +561,7 @@ import time
 """
 Calling external programs in Python
 """
-import subprocess
+# import subprocess
 
 # subprocess.run("ls")  # single command
 # subprocess.run(
@@ -575,13 +575,13 @@ import subprocess
 # )  # text=true returns a string instead of bytes
 # print(output)
 
-## redirecting output to a file
+# # redirecting output to a file
 # with open("output.txt", "w") as writer_obj:
 #     output = subprocess.run(
 #         ["ls", "-la"], stdout=writer_obj, text=True, check=True
 #     )  # check=true throws an error in Python if it fails
 
-## Error handling
+# # Error handling
 # output = subprocess.run(["ls", "-la", "blablah"], capture_output=True, text=True)
 # if output.returncode != 0:  # There was an error
 #     print(output.stderr)
@@ -589,12 +589,31 @@ import subprocess
 #     with open("output.txt", "w") as writer_obj:
 #         writer_obj.write(output)
 
-## Re-direct output to the void
+# # Re-direct output to the void
 # subprocess.run(["ls", "-la", "blablah"], stderr=subprocess.DEVNULL)
 
-## Pipe commands | !
+# # Pipe commands | !
 # def get_file_line_count_bash(file_path):
 #     line_count = subprocess.run(
 #         [f"cat {file_path} | wc -l"], capture_output=True, text=True, shell=True
 #     )
 #     return int(line_count.stdout.strip())
+"""
+requests with HTTPbin
+"""
+# import requests
+#
+# # GET
+# payload = {"page": 2, "count": 25}
+# r = requests.get("https://httpbin.org/get", params=payload)
+#
+# # POST
+# payload = {"username": "John", "password": "testing123"}
+# r = requests.post("https://httpbin.org/post", data=payload)
+# r_dict = r.json()
+#
+# # Basic Auth
+# r = requests.get(
+#     "https://httpbin.org/basic-auth/john/testing123", auth=("john", "testing123")
+# )
+# print(r.text)
