@@ -33,18 +33,22 @@ Closures
 "A closure is an inner function that remembers and has access to variables in
 the local scope in which it was created.
 """
+
+# def closure():
+#     count = 0
+#
+#     def inner():
+#         nonlocal count
+#         count += 1
+#         print(count)
+#
+#     return inner
 #
 #
-# def outer_func(msg):
-#     message = msg
-#
-#     def inner_func():
-#         print(message)
-#
-#     return inner_func
-#
-#
-# outer_func()
+# start = closure()
+# start()
+# start()
+# start()
 #
 """
 Memoization: storing the result of a function so it does not need to be re-run

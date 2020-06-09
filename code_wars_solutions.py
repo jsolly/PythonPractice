@@ -1,4 +1,30 @@
-def comp(array1, array2):  # Are they the "same"?
+def solution(s):
+    if not s:
+        return []
+
+    split_string = [(s[index : index + 2]) for index in range(0, len(s), 2)]
+
+    if len(split_string[-1]) == 1:
+        split_string[-1] += "_"
+    return split_string
+
+
+def make_readable(seconds):
+    whole_hours = seconds // 3600 if seconds >= 3600 else 0
+    remainder_seconds = seconds % 3600
+    whole_minutes = remainder_seconds // 60 if 0 < remainder_seconds < 3600 else 0
+    whole_seconds = remainder_seconds % 60
+
+    return f"{whole_hours:02}:{whole_minutes:02}:{whole_seconds:02}"
+
+
+def create_phone_number(numbers: list):
+    number_string = "".join(str(digit) for digit in numbers)
+
+    return f"({number_string[:3]}) {number_string[3:6]}-{number_string[6:10]}"
+
+
+def comp(array1, array2):
     if not array1 and not array2:
         return False
 
@@ -8,7 +34,7 @@ def comp(array1, array2):  # Are they the "same"?
     return False
 
 
-def decode_morse(code):  # Decode the Morse code
+def decode_morse(code):
     morse_code_dict = {
         ".-": "A",
         "-...": "B",
@@ -67,7 +93,7 @@ def decode_morse(code):  # Decode the Morse code
     return translated_message.strip()
 
 
-def find_outlier(integers: list):  # Find The Parity Outlier
+def find_outlier(integers: list):
     def check_int_type(integer, int_type):
         remainder = integer % 2
         if remainder == 1 and int_type == "even":
@@ -92,7 +118,7 @@ def find_outlier(integers: list):  # Find The Parity Outlier
             return number
 
 
-def song_decoder(song: str):  # Dubstep
+def song_decoder(song: str):
     removed_wubs = [word for word in song.split("WUB") if word != "WUB"]
     while "" in removed_wubs:
         removed_wubs.remove("")
@@ -100,7 +126,7 @@ def song_decoder(song: str):  # Dubstep
     return final_string
 
 
-def digital_root_sum(n):  # Digital Root Sum
+def digital_root_sum(n):
     while n > 10:
         n = sum((int(n) for n in str(n)))
     return n

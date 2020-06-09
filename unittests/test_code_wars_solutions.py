@@ -3,6 +3,48 @@ from GitHub.PythonPractice import code_wars_solutions
 
 
 class TestClass(unittest.TestCase):
+    def test_solution(self):  # Split Strings
+        tests = (
+            ("asdfadsf", ["as", "df", "ad", "sf"]),
+            ("asdfads", ["as", "df", "ad", "s_"]),
+            ("", []),
+            ("x", ["x_"]),
+        )
+
+        for inp, exp in tests:
+            self.assertEqual(exp, code_wars_solutions.solution(inp))
+
+    def test_make_readable(self):  # Make Readable
+        self.assertEqual("00:00:00", code_wars_solutions.make_readable(0))
+        self.assertEqual("00:00:05", code_wars_solutions.make_readable(5))
+        self.assertEqual("00:01:00", code_wars_solutions.make_readable(60))
+        self.assertEqual("23:59:59", code_wars_solutions.make_readable(86399))
+        self.assertEqual("99:59:59", code_wars_solutions.make_readable(359999))
+
+    # Do something
+    def test_create_phone_number(self):  # Create Phone Number
+
+        self.assertEqual(
+            code_wars_solutions.create_phone_number([1, 2, 3, 4, 5, 6, 7, 8, 9, 0]),
+            "(123) 456-7890",
+        )
+        self.assertEqual(
+            code_wars_solutions.create_phone_number([1, 1, 1, 1, 1, 1, 1, 1, 1, 1]),
+            "(111) 111-1111",
+        )
+        self.assertEqual(
+            code_wars_solutions.create_phone_number([1, 2, 3, 4, 5, 6, 7, 8, 9, 0]),
+            "(123) 456-7890",
+        )
+        self.assertEqual(
+            code_wars_solutions.create_phone_number([0, 2, 3, 0, 5, 6, 0, 8, 9, 0]),
+            "(023) 056-0890",
+        )
+        self.assertEqual(
+            code_wars_solutions.create_phone_number([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
+            "(000) 000-0000",
+        )
+
     def test_comp(self):
         a1 = [121, 144, 19, 161, 19, 144, 19, 11]
         a2 = [
