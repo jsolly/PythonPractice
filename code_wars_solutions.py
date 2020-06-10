@@ -1,3 +1,31 @@
+import string
+
+
+def is_pangram(s):
+    s = s.lower()
+    alphabet = string.ascii_lowercase
+
+    if len(set(alphabet).intersection(s)) == 26:
+        return True
+
+    return False
+
+
+def valid_parentheses(s):
+    if not s:
+        return True
+    elif s.count("(") != s.count(")"):
+        return False
+
+    parentheses_string = "".join([character for character in s if character in "()"])
+    while True:
+        parentheses_string = parentheses_string.replace("()", "")
+        if parentheses_string == ")(":
+            return False
+        if parentheses_string == "":
+            return True
+
+
 def solution(s):
     if not s:
         return []

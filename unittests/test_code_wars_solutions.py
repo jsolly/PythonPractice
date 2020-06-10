@@ -1,8 +1,36 @@
 import unittest
 from GitHub.PythonPractice import code_wars_solutions
+import string
 
 
 class TestClass(unittest.TestCase):
+    def test_is_pangram(self):  # Detect Pangram
+        pangram = "The quick, brown fox jumps over the lazy dog!"
+        self.assertTrue(code_wars_solutions.is_pangram(pangram))
+        pangram_2 = "This isn't a pangram! is not a pangram."
+        self.assertFalse(code_wars_solutions.is_pangram(pangram_2))
+
+    def test_valid_parentheses(self):  # Valid Parentheses
+        self.assertEqual(code_wars_solutions.valid_parentheses("  ("), False)
+        self.assertEqual(code_wars_solutions.valid_parentheses(")test"), False)
+        self.assertEqual(code_wars_solutions.valid_parentheses(""), True)
+        self.assertEqual(code_wars_solutions.valid_parentheses("hi())("), False)
+        self.assertEqual(code_wars_solutions.valid_parentheses("hi(hi)()"), True)
+        self.assertEqual(
+            code_wars_solutions.valid_parentheses("beljarsbqo)(vpoao)dudxlwjguh(cms"),
+            False,
+        )
+        self.assertEqual(
+            code_wars_solutions.valid_parentheses(
+                "(ph)kyienh(((rjxk)(x)zlsdw)mzvmeufm)jd)(pm(x)"
+            ),
+            False,
+        )
+
+        "(ph)kyienh(((rjxk)(x)zlsdw)mzvmeufm)jd)(pm(x)"
+
+        self.assertEqual(code_wars_solutions.valid_parentheses("l(k(hk)m)"), True)
+
     def test_solution(self):  # Split Strings
         tests = (
             ("asdfadsf", ["as", "df", "ad", "sf"]),
