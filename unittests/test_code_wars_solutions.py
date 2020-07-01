@@ -4,6 +4,25 @@ import string
 
 
 class TestClass(unittest.TestCase):
+    def test_rgb(self):  # RGB to HEX Conversion
+        self.assertEqual(
+            code_wars_solutions.rgb(0, 0, 0), "000000", "testing zero values"
+        )
+        self.assertEqual(
+            code_wars_solutions.rgb(1, 2, 3), "010203", "testing near zero values"
+        )
+        self.assertEqual(
+            code_wars_solutions.rgb(255, 255, 255), "FFFFFF", "testing max values"
+        )
+        self.assertEqual(
+            code_wars_solutions.rgb(254, 253, 252), "FEFDFC", "testing near max values"
+        )
+        self.assertEqual(
+            code_wars_solutions.rgb(-20, 275, 125),
+            "00FF7D",
+            "testing out of range values",
+        )
+
     def test_is_pangram(self):  # Detect Pangram
         pangram = "The quick, brown fox jumps over the lazy dog!"
         self.assertTrue(code_wars_solutions.is_pangram(pangram))

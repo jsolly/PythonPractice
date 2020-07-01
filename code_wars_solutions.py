@@ -1,6 +1,36 @@
 import string
 
 
+def rgb(r, g, b):
+    def get_hex_from_RGB_val(val):
+        hex_dict = {10: "A", 11: "B", 12: "C", 13: "D", 14: "E", 15: "F"}
+        if val <= 0:
+            return "00"
+
+        elif val > 255:
+            return "FF"
+
+        elif 0 < val < 10:
+            return f"{val:02}"
+
+        else:
+            floor_division_by_16 = val // 16
+            remainder = val % 16
+            if 10 <= remainder <= 15:
+                remainder = hex_dict[remainder]
+
+            if 10 <= floor_division_by_16 <= 15:
+                result = f"{hex_dict[floor_division_by_16]}{remainder}"
+
+            elif floor_division_by_16 < 10:
+                result = f"{floor_division_by_16}{remainder}"
+
+            return result
+
+    convert = get_hex_from_RGB_val
+    return f"{convert(r)}{convert(g)}{convert(b)}"
+
+
 def is_pangram(s):
     s = s.lower()
     alphabet = string.ascii_lowercase
