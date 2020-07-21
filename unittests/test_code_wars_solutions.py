@@ -1,9 +1,117 @@
 import unittest
 from GitHub.PythonPractice import code_wars_solutions
-import string
 
 
 class TestClass(unittest.TestCase):
+    def test_count_ways(self):
+        self.assertEqual(code_wars_solutions.count_ways(1, 3), 1)
+        self.assertEqual(code_wars_solutions.count_ways(3, 3), 4)
+        self.assertEqual(code_wars_solutions.count_ways(2, 3), 2)
+        self.assertEqual(code_wars_solutions.count_ways(5, 3), 13)
+        self.assertEqual(code_wars_solutions.count_ways(4, 3), 7)
+        self.assertEqual(code_wars_solutions.count_ways(10, 6), 492)
+        self.assertEqual(code_wars_solutions.count_ways(14, 7), 7936)
+
+    def test_pig_it(self):  # Simple pig latin
+        self.assertEqual(
+            code_wars_solutions.pig_it("Pig latin is cool ?"),
+            "igPay atinlay siay oolcay ?",
+        )
+        self.assertEqual(
+            code_wars_solutions.pig_it("This is my string"), "hisTay siay ymay tringsay"
+        )
+
+    def test_solve_element_parity(self):  # Array element Parity
+        self.assertEqual(code_wars_solutions.solve_element_parity([1, -1, 2, -2, 3]), 3)
+        self.assertEqual(
+            code_wars_solutions.solve_element_parity([-3, 1, 2, 3, -1, -4, -2]), -4
+        )
+        self.assertEqual(
+            code_wars_solutions.solve_element_parity([1, -1, 2, -2, 3, 3]), 3
+        )
+        self.assertEqual(
+            code_wars_solutions.solve_element_parity(
+                [-110, 110, -38, -38, -62, 62, -38, -38, -38]
+            ),
+            -38,
+        )
+        self.assertEqual(
+            code_wars_solutions.solve_element_parity([-9, -105, -9, -9, -9, -9, 105]),
+            -9,
+        )
+
+    def test_fake_binary(self):
+        tests = [
+            # [expected, input]
+            ["01011110001100111", "45385593107843568"],
+            ["101000111101101", "509321967506747"],
+            ["011011110000101010000011011", "366058562030849490134388085"],
+            ["01111100", "15889923"],
+            ["100111001111", "800857237867"],
+        ]
+
+        for exp, inp in tests:
+            self.assertEqual(code_wars_solutions.fake_binary(inp), exp)
+
+    def test_weather_info(self):  # Grasshopper Debug
+        self.assertEqual(
+            code_wars_solutions.weather_info(50), "10.0 is above freezing temperature"
+        )
+        self.assertEqual(
+            code_wars_solutions.weather_info(23), "-5.0 is freezing temperature"
+        )
+
+    def test_remove_leftmost_duplicates(self):  # Simple Remove Duplicates
+        self.assertEqual(
+            code_wars_solutions.remove_leftmost_duplicates([3, 4, 4, 3, 6, 3]),
+            [4, 6, 3],
+        )
+        self.assertEqual(
+            code_wars_solutions.remove_leftmost_duplicates([1, 2, 1, 2, 1, 2, 3]),
+            [1, 2, 3],
+        )
+        self.assertEqual(
+            code_wars_solutions.remove_leftmost_duplicates([1, 2, 3, 4]), [1, 2, 3, 4]
+        )
+        self.assertEqual(
+            code_wars_solutions.remove_leftmost_duplicates([1, 1, 4, 5, 1, 2, 1]),
+            [4, 5, 2, 1],
+        )
+
+    def test_user_rank(self):  # Codewars style ranking system
+        user = code_wars_solutions.User()
+        user.inc_progress(-7)
+        self.assertEqual(user.progress, 10)
+
+        user = code_wars_solutions.User()
+        user.inc_progress(-6)
+        self.assertEqual(user.progress, 40)
+
+        user = code_wars_solutions.User()
+        user.inc_progress(-4)
+        self.assertEqual(user.rank, -7)
+        self.assertEqual(user.progress, 60)
+
+        user = code_wars_solutions.User()
+        user.inc_progress(2)
+        user.inc_progress(-7)
+        self.assertEqual(user.rank, 1)
+
+        user = code_wars_solutions.User()
+        user.inc_progress(-4)
+        self.assertEqual(user.rank, -7)
+
+    def test_equals_atomically(self):  # Molecule to atoms (UNFINISHED)
+        # self.assertEqual({"H": 2, "O": 1}, code_wars_solutions.parse_molecule("H2O"))
+        # self.assertEqual({"H": 2, "O": 2}, code_wars_solutions.parse_molecule("H2O2"))
+        self.assertEqual(
+            {"Mg": 1, "O": 2, "H": 2}, code_wars_solutions.parse_molecule("Mg(OH)2")
+        )
+        self.assertEqual(
+            {"K": 4, "O": 14, "N": 2, "S": 4},
+            code_wars_solutions.parse_molecule("K4[ON(SO3)2]2"),
+        )
+
     def test_rgb(self):  # RGB to HEX Conversion
         self.assertEqual(
             code_wars_solutions.rgb(0, 0, 0), "000000", "testing zero values"
