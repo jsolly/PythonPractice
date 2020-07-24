@@ -3,6 +3,8 @@ from GitHub.PythonPractice import code_wars_solutions
 
 
 class TestClass(unittest.TestCase):
+    def test_bobs_jump(self):
+
     def test_count_ways(self):
         self.assertEqual(code_wars_solutions.count_ways(1, 3), 1)
         self.assertEqual(code_wars_solutions.count_ways(3, 3), 4)
