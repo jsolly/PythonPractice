@@ -2,18 +2,6 @@ import string
 import re
 
 
-def bobs_jump(n, k):
-    a, b = 0, 1
-    ways = 0
-    for i in range(0, k):
-        ways += 1
-        a, b = b, a + b
-
-        return numbers
-
-    return sum(get_fibonacci_nums(n))
-
-
 def count_ways(n, k):
     if n > k:
         return k

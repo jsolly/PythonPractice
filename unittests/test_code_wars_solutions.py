@@ -3,8 +3,6 @@ from GitHub.PythonPractice import code_wars_solutions
 
 
 class TestClass(unittest.TestCase):
-    def test_bobs_jump(self):
-
     def test_count_ways(self):
         self.assertEqual(code_wars_solutions.count_ways(1, 3), 1)
         self.assertEqual(code_wars_solutions.count_ways(3, 3), 4)
@@ -330,4 +328,5 @@ class TestClass(unittest.TestCase):
         fib_gen = code_wars_solutions.fibonacci_generator(10)
         first_ten = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
         for fib, num in zip(fib_gen, first_ten):
+
             self.assertEqual(fib, num)
