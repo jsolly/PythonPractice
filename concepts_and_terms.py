@@ -143,43 +143,47 @@ proceeding.
 """
 #
 #
-# class Person:
-#     def quack(self):
-#         print("Quack, quack!")
-#
-#     def walk(self):
-#         print("Waddle, Waddle!")
-#
-#
-# class Duck:
-#     def quack(self):
-#         print("Quack, quack!")
-#
-#     def walk(self):
-#         print("Waddle, Waddle!")
-#
-#
-# # Pythonic
-# def is_a_duck_pythonic(thing):
-#     try:
-#         thing.quack()
-#         thing.walk()
-#         print("I think this is a Duck!")
-#     except AttributeError as e:
-#         print(e)
-#         print("I don't think this is a duck!")
+class Person:
+    def quack(self):
+        print("Quack, quack!")
+
+    def walk(self):
+        print("Waddle, Waddle!")
+
+
+class Duck:
+    def quack(self):
+        print("Quack, quack!")
+
+    def walk(self):
+        print("Waddle, Waddle!")
+
+
+# Pythonic
+def is_a_duck_pythonic(thing):
+    try:
+        thing.quack()
+        thing.walk()
+        print("I think this is a Duck!")
+    except AttributeError as e:
+        print(e)
+        print("I don't think this is a duck!")
+
+
 #
 #
 # # Non-Pythonic
-# def is_a_duck(thing):
-#     if hasattr(thing, "quack"):
-#         if callable(thing.quack):
-#             thing.quack()
-#
-#         if hasattr(thing, "walk"):
-#             if callable(thing.walk):
-#                 thing.walk()
-#         print("I think this is a Duck!")
+def is_a_duck(thing):
+    if hasattr(thing, "quack"):
+        if callable(thing.quack):
+            thing.quack()
+
+        if hasattr(thing, "walk"):
+            if callable(thing.walk):
+                thing.walk()
+        print("I think this is a Duck!")
+
+
 #
 #     else:
 #         print("I don't think this is a duck!")
