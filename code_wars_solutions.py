@@ -1,5 +1,41 @@
-import string
 import re
+import string
+
+
+def valid_spacing2(s):
+    s_split = s.split()
+    join_s_split = " ".join(s_split)
+    if s == join_s_split:
+        return True
+    else:
+        return False
+
+
+def valid_spacing(s):
+    if s == "":
+        return True
+
+    if s[0] == " ":
+        print("space at beginning")
+        return False
+
+    if s[-1] == " ":
+        print("space at end")
+        return False
+
+    if "  " in s:
+        return False
+
+    else:
+        return True
+        print("I returned True!")
+
+
+def rotateleft(d, arr):
+    while d != 0:
+        arr.append(arr.pop(0))
+        d -= 1
+    return arr
 
 
 def count_ways(n, k):

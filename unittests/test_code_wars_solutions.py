@@ -1,8 +1,34 @@
 import unittest
+
 from GitHub.PythonPractice import code_wars_solutions
 
 
 class TestClass(unittest.TestCase):
+    def test_valid_spacing(self):
+        self.assertEqual(code_wars_solutions.valid_spacing2("Hello world"), True)
+        self.assertEqual(code_wars_solutions.valid_spacing2(" Hello world"), False)
+        self.assertEqual(code_wars_solutions.valid_spacing("Hello world  "), False)
+        self.assertEqual(code_wars_solutions.valid_spacing("Hello  world"), False)
+        self.assertEqual(code_wars_solutions.valid_spacing("Hello"), True)
+        self.assertEqual(code_wars_solutions.valid_spacing("Helloworld "), False)
+        self.assertEqual(code_wars_solutions.valid_spacing(" "), False)
+
+    def test_GetSum(self):
+        self.assertEqual(code_wars_solutions.get_sum(1, 0), 1)  # 1 + 0 = 1
+        self.assertEqual(code_wars_solutions.get_sum(1, 2), 3)  # 1 + 2 = 3
+        self.assertEqual(code_wars_solutions.get_sum(0, 1), 1)  # 0 + 1 = 1
+        self.assertEqual(
+            code_wars_solutions.get_sum(1, 1), 1
+        )  # 1 Since both are the same
+        self.assertEqual(code_wars_solutions.get_sum(-1, 0), -1)  # -1 + 0 = -1
+        self.assertEqual(code_wars_solutions.get_sum(-1, 2), 2)  # -1 + 0 + 1 + 2  = 2
+        self.assertEqual(code_wars_solutions.get_sum(0, -1), -1)  # -1 + 0
+
+    def test_rotateleft(self):
+        arr = [1, 2, 3, 4, 5]
+        d = 2
+        self.assertEqual(code_wars_solutions.rotateleft(d, arr), [3, 4, 5, 1, 2])
+
     def test_count_ways(self):
         self.assertEqual(code_wars_solutions.count_ways(1, 3), 1)
         self.assertEqual(code_wars_solutions.count_ways(3, 3), 4)
